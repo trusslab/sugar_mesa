@@ -25,6 +25,7 @@
 #pragma once
 
 #include "egltypedefs.h"
+#include "my_prints.h"
 
 struct wl_buffer;
 

@@ -29,7 +29,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-#include <xf86drm.h>
+#include <xf86drm2.h>
 #include <dlfcn.h>
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -39,6 +39,7 @@
 #include "egl_dri2.h"
 #include "egl_dri2_fallbacks.h"
 #include "loader.h"
+#include "my_prints.h"
 
 static struct gbm_bo *
 lock_front_buffer(struct gbm_surface *_surf)
@@ -618,7 +619,7 @@ dri2_initialize_drm(_EGLDriver *drv, _EGLDisplay *disp)
       char buf[64];
       int n = snprintf(buf, sizeof(buf), DRM_DEV_NAME, DRM_DIR_NAME, 0);
       if (n != -1 && n < sizeof(buf))
-         fd = loader_open_device(buf);
+         fd = loader_open_device(INTEL_GPU_DEV_FILE_NAME);
       if (fd < 0)
          fd = loader_open_device("/dev/dri/card0");
       dri2_dpy->own_device = 1;

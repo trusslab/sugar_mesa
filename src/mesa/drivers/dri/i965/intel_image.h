@@ -37,7 +37,7 @@
  */
 
 #include <stdbool.h>
-#include <xf86drm.h>
+#include <xf86drm2.h>
 
 #include "main/mtypes.h"
 #include "intel_bufmgr.h"

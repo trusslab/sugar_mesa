@@ -27,7 +27,7 @@ EXTRA_DIST = SConscript
 
 if HAVE_SHARED_GLAPI
 SHARED_GLAPI_CFLAGS = -DGLX_SHARED_GLAPI
-SHARED_GLAPI_LIB = $(top_builddir)/src/mapi/shared-glapi/libglapi.la
+SHARED_GLAPI_LIB = $(top_builddir)/src/mapi/shared-glapi/libglapi2.la
 endif
 
 AM_CPPFLAGS = \
@@ -69,7 +69,7 @@ GL_PATCH = 0
 
 lib@GL_LIB@_la_LIBADD = \
 	$(top_builddir)/src/mesa/libmesa.la \
-	$(top_builddir)/src/mapi/glapi/libglapi.la \
+	$(top_builddir)/src/mapi/glapi/libglapi2.la \
 	$(SHARED_GLAPI_LIB) \
 	$(GL_LIB_DEPS)
 

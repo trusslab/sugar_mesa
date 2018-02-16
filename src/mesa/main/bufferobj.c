@@ -44,6 +44,7 @@
 #include "glformats.h"
 #include "texstore.h"
 #include "transformfeedback.h"
+#include "my_prints.h"
 
 
 /* Debug flags */

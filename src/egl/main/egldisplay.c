@@ -53,9 +53,10 @@
 #ifdef HAVE_WAYLAND_PLATFORM
 #include <wayland-client.h>
 #endif
-#ifdef HAVE_DRM_PLATFORM
+#ifdef HAVE_DRM2_PLATFORM
 #include <gbm.h>
 #endif
+#include "my_prints.h"
 
 
 /**
@@ -67,7 +68,7 @@ static const struct {
 } egl_platforms[_EGL_NUM_PLATFORMS] = {
    { _EGL_PLATFORM_X11, "x11" },
    { _EGL_PLATFORM_WAYLAND, "wayland" },
-   { _EGL_PLATFORM_DRM, "drm" },
+   { _EGL_PLATFORM_DRM2, "drm" },
    { _EGL_PLATFORM_ANDROID, "android" },
    { _EGL_PLATFORM_HAIKU, "haiku" },
    { _EGL_PLATFORM_SURFACELESS, "surfaceless" },
@@ -152,10 +153,10 @@ _eglNativePlatformDetectNativeDisplay(void *nativeDisplay)
          return _EGL_PLATFORM_WAYLAND;
 #endif
 
-#ifdef HAVE_DRM_PLATFORM
+#ifdef HAVE_DRM2_PLATFORM
       /* gbm has a pointer to its constructor as first element. */
       if (first_pointer == gbm_create_device)
-         return _EGL_PLATFORM_DRM;
+         return _EGL_PLATFORM_DRM2;
 #endif
 
 #ifdef HAVE_X11_PLATFORM
@@ -490,7 +491,7 @@ _eglGetX11Display(Display *native_display,
 }
 #endif /* HAVE_X11_PLATFORM */
 
-#ifdef HAVE_DRM_PLATFORM
+#ifdef HAVE_DRM2_PLATFORM
 _EGLDisplay*
 _eglGetGbmDisplay(struct gbm_device *native_display,
                   const EGLint *attrib_list)
@@ -501,9 +502,9 @@ _eglGetGbmDisplay(struct gbm_device *native_display,
       return NULL;
    }
 
-   return _eglFindDisplay(_EGL_PLATFORM_DRM, native_display);
+   return _eglFindDisplay(_EGL_PLATFORM_DRM2, native_display);
 }
-#endif /* HAVE_DRM_PLATFORM */
+#endif /* HAVE_DRM2_PLATFORM */
 
 #ifdef HAVE_WAYLAND_PLATFORM
 _EGLDisplay*

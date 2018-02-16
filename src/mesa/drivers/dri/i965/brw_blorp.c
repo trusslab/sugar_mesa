@@ -29,6 +29,7 @@
 #include "brw_compiler.h"
 #include "brw_nir.h"
 #include "brw_state.h"
+#include "my_prints.h"
 
 #define FILE_DEBUG_FLAG DEBUG_BLORP
 

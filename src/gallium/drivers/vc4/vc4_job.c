@@ -26,7 +26,7 @@
  * Functions for submitting VC4 render jobs to the kernel.
  */
 
-#include <xf86drm.h>
+#include <xf86drm2.h>
 #include "vc4_context.h"
 
 void

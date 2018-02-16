@@ -63,7 +63,7 @@ glx_HEADERS = \
   $(top_srcdir)/include/GL/glxext.h \
   $(top_srcdir)/include/GL/glx_mangle.h
 pkgconfigdir = $(libdir)/pkgconfig
-pkgconfig_DATA = mesa/gl.pc
+pkgconfig_DATA = mesa/gl2.pc
 endif
 
 if HAVE_COMMON_OSMESA

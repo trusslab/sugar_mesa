@@ -81,6 +81,7 @@ struct _egl_surface
    EGLBoolean BoundToTexture;
 
    EGLBoolean PostSubBufferSupportedNV;
+   EGLBoolean VGTSurface;
 };
 
 

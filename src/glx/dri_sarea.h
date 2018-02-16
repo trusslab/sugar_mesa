@@ -37,7 +37,7 @@
 #ifndef _SAREA_H_
 #define _SAREA_H_
 
-#include "xf86drm.h"
+#include "xf86drm2.h"
 
 /* SAREA area needs to be at least a page */
 #if defined(__alpha__)

@@ -3,10 +3,10 @@ exec_prefix=${prefix}
 libdir=@libdir@
 includedir=@includedir@
 
-Name: egl
-Description: Mesa EGL library
+Name: egl2
+Description: Mesa EGL library (works with library drivers)
 Requires.private: @GL_PC_REQ_PRIV@
 Version: @PACKAGE_VERSION@
-Libs: -L${libdir} -lEGL
+Libs: -L${libdir} -lEGL2
 Libs.private: @GL_PC_LIB_PRIV@
 Cflags: -I${includedir} @GL_PC_CFLAGS@

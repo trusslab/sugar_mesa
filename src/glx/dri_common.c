@@ -41,6 +41,7 @@
 #include "glxclient.h"
 #include "dri_common.h"
 #include "loader.h"
+#include "my_prints.h"
 
 #ifndef RTLD_NOW
 #define RTLD_NOW 0
@@ -129,14 +130,14 @@ driOpenDriver(const char *driverName)
 
 #ifdef GLX_USE_TLS
       snprintf(realDriverName, sizeof realDriverName,
-               "%.*s/tls/%s_dri.so", len, p, driverName);
+               "%.*s/tls/%s_dri2.so", len, p, driverName);
       InfoMessageF("OpenDriver: trying %s\n", realDriverName);
       handle = dlopen(realDriverName, RTLD_NOW | RTLD_GLOBAL);
 #endif
 
       if (handle == NULL) {
          snprintf(realDriverName, sizeof realDriverName,
-                  "%.*s/%s_dri.so", len, p, driverName);
+                  "%.*s/%s_dri2.so", len, p, driverName);
          InfoMessageF("OpenDriver: trying %s\n", realDriverName);
          handle = dlopen(realDriverName, RTLD_NOW | RTLD_GLOBAL);
       }
@@ -148,7 +149,7 @@ driOpenDriver(const char *driverName)
    }
 
    if (!handle)
-      ErrorMessageF("unable to load driver: %s_dri.so\n", driverName);
+      ErrorMessageF("unable to load driver: %s_dri2.so\n", driverName);
 
    if (glhandle)
       dlclose(glhandle);

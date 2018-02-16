@@ -33,6 +33,7 @@
 
 #include "intel_batchbuffer.h"
 #include "intel_buffer_objects.h"
+#include "my_prints.h"
 
 static bool
 is_passthru_format(uint32_t format)

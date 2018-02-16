@@ -21,7 +21,7 @@
  * IN THE SOFTWARE.
  */
 
-#include <xf86drm.h>
+#include <xf86drm2.h>
 #include <err.h>
 
 #include "pipe/p_defines.h"

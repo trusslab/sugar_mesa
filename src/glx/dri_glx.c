@@ -44,8 +44,9 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #include <dlfcn.h>
 #include <sys/types.h>
 #include <sys/mman.h>
-#include "xf86drm.h"
+#include "xf86drm2.h"
 #include "dri_common.h"
+#include "my_prints.h"
 
 struct dri_display
 {

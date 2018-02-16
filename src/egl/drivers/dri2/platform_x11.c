@@ -35,8 +35,8 @@
 #include <fcntl.h>
 #include <errno.h>
 #include <unistd.h>
-#ifdef HAVE_LIBDRM
-#include <xf86drm.h>
+#ifdef HAVE_LIBDRM2
+#include <xf86drm2.h>
 #endif
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -719,6 +719,7 @@ dri2_x11_authenticate(_EGLDisplay *disp, uint32_t id)
 
    return dri2_x11_do_authenticate(dri2_dpy, id);
 }
+
 
 static EGLBoolean
 dri2_x11_add_configs_for_visuals(struct dri2_egl_display *dri2_dpy,

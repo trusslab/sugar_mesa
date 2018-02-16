@@ -43,6 +43,7 @@
 #include "egldisplay.h"
 #include "egldriver.h"
 #include "egllog.h"
+#include "my_prints.h"
 
 typedef struct _egl_module {
    char *Name;

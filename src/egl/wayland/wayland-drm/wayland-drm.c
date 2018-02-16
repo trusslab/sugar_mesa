@@ -36,6 +36,7 @@
 #include <wayland-server.h>
 #include "wayland-drm.h"
 #include "wayland-drm-server-protocol.h"
+#include "my_prints.h"
 
 #define MIN(x,y) (((x)<(y))?(x):(y))
 
@@ -189,11 +190,6 @@ drm_authenticate(struct wl_client *client,
 {
 	struct wl_drm *drm = resource->data;
 
-	if (drm->callbacks->authenticate(drm->user_data, id) < 0)
-		wl_resource_post_error(resource,
-				       WL_DRM_ERROR_AUTHENTICATE_FAIL,
-				       "authenicate failed");
-	else
 		wl_resource_post_event(resource, WL_DRM_AUTHENTICATED);
 }
 

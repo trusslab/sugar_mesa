@@ -38,6 +38,7 @@
 #include "intel_blit.h"
 #include "intel_buffer_objects.h"
 #include "intel_batchbuffer.h"
+#include "my_prints.h"
 
 /**
  * Map a buffer object; issue performance warnings if mapping causes stalls.

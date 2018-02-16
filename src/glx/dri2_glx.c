@@ -49,6 +49,7 @@
 #include "dri_common.h"
 #include "dri2_priv.h"
 #include "loader.h"
+#include "my_prints.h"
 
 /* From xmlpool/options.h, user exposed so should be stable */
 #define DRI_CONF_VBLANK_NEVER 0
@@ -1198,10 +1199,6 @@ dri2CreateScreen(int screen, struct glx_display * priv)
       goto handle_error;
    }
 
-   if (!DRI2Authenticate(priv->dpy, RootWindow(priv->dpy, screen), magic)) {
-      ErrorMessageF("failed to authenticate magic %d\n", magic);
-      goto handle_error;
-   }
 
    /* If Mesa knows about the appropriate driver for this fd, then trust it.
     * Otherwise, default to the server's value.

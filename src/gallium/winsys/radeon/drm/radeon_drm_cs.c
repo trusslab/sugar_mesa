@@ -70,7 +70,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>
-#include <xf86drm.h>
+#include <xf86drm2.h>
 
 
 #define RELOC_DWORDS (sizeof(struct drm_radeon_cs_reloc) / sizeof(uint32_t))

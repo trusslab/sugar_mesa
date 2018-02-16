@@ -81,6 +81,7 @@ USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 #include "vbo_context.h"
 #include "vbo_noop.h"
+#include "my_prints.h"
 
 
 #ifdef ERROR

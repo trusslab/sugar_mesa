@@ -28,18 +28,18 @@ AM_CFLAGS = \
 	-I$(top_srcdir)/src \
 	$(DEFINES) \
 	$(VISIBILITY_CFLAGS) \
-	$(LIBDRM_CFLAGS) \
+	$(LIBDRM2_CFLAGS) \
 	$(EGL_CFLAGS) \
 	-D_EGL_NATIVE_PLATFORM=$(EGL_NATIVE_PLATFORM)
 
-lib_LTLIBRARIES = libEGL.la
+lib_LTLIBRARIES = libEGL2.la
 
-libEGL_la_SOURCES = \
+libEGL2_la_SOURCES = \
 	$(LIBEGL_C_FILES)
 
-libEGL_la_LIBADD = \
+libEGL2_la_LIBADD = \
 	$(EGL_LIB_DEPS)
-libEGL_la_LDFLAGS = \
+libEGL2_la_LDFLAGS = \
 	-no-undefined \
 	-version-number 1:0 \
 	$(BSYMBOLIC) \
@@ -52,7 +52,7 @@ dri3_backend_FILES =
 if HAVE_PLATFORM_X11
 AM_CFLAGS += -DHAVE_X11_PLATFORM
 AM_CFLAGS += $(XCB_DRI2_CFLAGS)
-libEGL_la_LIBADD += $(XCB_DRI2_LIBS)
+libEGL2_la_LIBADD += $(XCB_DRI2_LIBS)
 dri2_backend_FILES += drivers/dri2/platform_x11.c
 
 if HAVE_DRI3
@@ -60,22 +60,22 @@ dri3_backend_FILES += \
 	drivers/dri2/platform_x11_dri3.c \
 	drivers/dri2/platform_x11_dri3.h
 
-libEGL_la_LIBADD += $(top_builddir)/src/loader/libloader_dri3_helper.la
+libEGL2_la_LIBADD += $(top_builddir)/src/loader/libloader_dri3_helper.la
 endif
 endif
 
 if HAVE_PLATFORM_WAYLAND
 AM_CFLAGS += -DHAVE_WAYLAND_PLATFORM
 AM_CFLAGS += $(WAYLAND_CFLAGS)
-libEGL_la_LIBADD += $(WAYLAND_LIBS)
-libEGL_la_LIBADD += $(LIBDRM_LIBS)
-libEGL_la_LIBADD += $(top_builddir)/src/egl/wayland/wayland-drm/libwayland-drm.la
+libEGL2_la_LIBADD += $(WAYLAND_LIBS)
+libEGL2_la_LIBADD += $(LIBDRM2_LIBS)
+libEGL2_la_LIBADD += $(top_builddir)/src/egl/wayland/wayland-drm/libwayland-drm.la
 dri2_backend_FILES += drivers/dri2/platform_wayland.c
 endif
 
-if HAVE_EGL_PLATFORM_DRM
-AM_CFLAGS += -DHAVE_DRM_PLATFORM
-libEGL_la_LIBADD += $(top_builddir)/src/gbm/libgbm.la
+if HAVE_EGL_PLATFORM_DRM2
+AM_CFLAGS += -DHAVE_DRM2_PLATFORM
+libEGL2_la_LIBADD += $(top_builddir)/src/gbm/libgbm2.la
 dri2_backend_FILES += drivers/dri2/platform_drm.c
 endif
 
@@ -100,20 +100,20 @@ AM_CFLAGS += \
 	-DDEFAULT_DRIVER_DIR=\"$(DRI_DRIVER_SEARCH_DIR)\" \
 	-D_EGL_BUILT_IN_DRIVER_DRI2
 
-libEGL_la_SOURCES += \
+libEGL2_la_SOURCES += \
 	$(dri2_backend_core_FILES) \
 	$(dri2_backend_FILES) \
 	$(dri3_backend_FILES)
 
-libEGL_la_LIBADD += $(top_builddir)/src/loader/libloader.la
-libEGL_la_LIBADD += $(DLOPEN_LIBS) $(LIBDRM_LIBS) $(CLOCK_LIB)
+libEGL2_la_LIBADD += $(top_builddir)/src/loader/libloader.la
+libEGL2_la_LIBADD += $(DLOPEN_LIBS) $(LIBDRM2_LIBS) $(CLOCK_LIB)
 endif
 
 include $(top_srcdir)/install-lib-links.mk
 
 pkgconfigdir = $(libdir)/pkgconfig
 
-pkgconfig_DATA = main/egl.pc
+pkgconfig_DATA = main/egl2.pc
 
 khrdir = $(includedir)/KHR
 khr_HEADERS = $(top_srcdir)/include/KHR/khrplatform.h

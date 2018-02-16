@@ -3,10 +3,10 @@ exec_prefix=${prefix}
 libdir=@libdir@
 includedir=@includedir@
 
-Name: glesv1_cm
-Description: Mesa OpenGL ES 1.1 CM library
+Name: glesv1_cm2
+Description: Mesa OpenGL ES 1.1 CM library (works with library drivers)
 Requires.private:
 Version: @VERSION@
-Libs: -L${libdir} -lGLESv1_CM
+Libs: -L${libdir} -lGLESv1_CM2
 Libs.private: @GLESv1_CM_PC_LIB_PRIV@
 Cflags: -I${includedir}

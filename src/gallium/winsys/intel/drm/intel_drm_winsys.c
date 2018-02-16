@@ -31,7 +31,7 @@
 #define ETIME ETIMEDOUT
 #endif
 
-#include <xf86drm.h>
+#include <xf86drm2.h>
 #include <i915_drm.h>
 #include <intel_bufmgr.h>
 

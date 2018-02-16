@@ -3,10 +3,10 @@ exec_prefix=@exec_prefix@
 libdir=@libdir@
 includedir=@includedir@
 
-Name: gbm
-Description: Mesa gbm library
+Name: gbm2
+Description: Mesa gbm2 library (works with library drivers)
 Requires.private: @GBM_PC_REQ_PRIV@
 Version: @VERSION@
-Libs: -L${libdir} -lgbm
+Libs: -L${libdir} -lgbm2
 Libs.private: @GBM_PC_LIB_PRIV@
 Cflags: -I${includedir}

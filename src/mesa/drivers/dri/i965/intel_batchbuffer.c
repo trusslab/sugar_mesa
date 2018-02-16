@@ -33,8 +33,9 @@
 #include "brw_defines.h"
 #include "brw_state.h"
 
-#include <xf86drm.h>
+#include <xf86drm2.h>
 #include <i915_drm.h>
+#include "my_prints.h"
 
 static void
 intel_batchbuffer_reset(struct brw_context *brw);

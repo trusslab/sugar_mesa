@@ -101,6 +101,7 @@
 #include "eglconfig.h"
 #include "eglimage.h"
 #include "eglsync.h"
+#include "my_prints.h"
 
 
 /**
@@ -307,7 +308,7 @@ eglGetPlatformDisplayEXT(EGLenum platform, void *native_display,
       dpy = _eglGetX11Display((Display*) native_display, attrib_list);
       break;
 #endif
-#ifdef HAVE_DRM_PLATFORM
+#ifdef HAVE_DRM2_PLATFORM
    case EGL_PLATFORM_GBM_MESA:
       dpy = _eglGetGbmDisplay((struct gbm_device*) native_display,
                               attrib_list);

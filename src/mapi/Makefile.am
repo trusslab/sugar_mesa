@@ -62,19 +62,19 @@ glapi_gen_mapi_deps := \
 if HAVE_SHARED_GLAPI
 BUILT_SOURCES += shared-glapi/glapi_mapi_tmp.h
 
-lib_LTLIBRARIES += shared-glapi/libglapi.la
-shared_glapi_libglapi_la_SOURCES = $(MAPI_GLAPI_FILES) shared-glapi/glapi_mapi_tmp.h
-shared_glapi_libglapi_la_CFLAGS = \
+lib_LTLIBRARIES += shared-glapi/libglapi2.la
+shared_glapi_libglapi2_la_SOURCES = $(MAPI_GLAPI_FILES) shared-glapi/glapi_mapi_tmp.h
+shared_glapi_libglapi2_la_CFLAGS = \
 	$(AM_CFLAGS) \
 	$(VISIBILITY_CFLAGS)
-shared_glapi_libglapi_la_CPPFLAGS = \
+shared_glapi_libglapi2_la_CPPFLAGS = \
 	$(AM_CPPFLAGS) \
 	-DMAPI_MODE_GLAPI \
 	-DMAPI_ABI_HEADER=\"shared-glapi/glapi_mapi_tmp.h\"
-shared_glapi_libglapi_la_LIBADD = \
+shared_glapi_libglapi2_la_LIBADD = \
 	$(PTHREAD_LIBS) \
 	$(SELINUX_LIBS)
-shared_glapi_libglapi_la_LDFLAGS = \
+shared_glapi_libglapi2_la_LDFLAGS = \
 	-no-undefined \
 	$(GC_SECTIONS) \
 	$(LD_NO_UNDEFINED)
@@ -87,7 +87,7 @@ shared_glapi_test_CPPFLAGS = \
 	$(AM_CPPFLAGS) \
 	-I$(top_srcdir)/src/gtest/include
 shared_glapi_test_LDADD = \
-	$(top_builddir)/src/mapi/shared-glapi/libglapi.la \
+	$(top_builddir)/src/mapi/shared-glapi/libglapi2.la \
 	$(top_builddir)/src/gtest/libgtest.la
 endif
 
@@ -97,7 +97,7 @@ shared-glapi/glapi_mapi_tmp.h : glapi/gen/gl_and_es_API.xml $(glapi_gen_mapi_dep
 		$(srcdir)/glapi/gen/gl_and_es_API.xml > $@
 
 if HAVE_OPENGL
-noinst_LTLIBRARIES = glapi/libglapi.la
+noinst_LTLIBRARIES = glapi/libglapi2.la
 
 if HAVE_X86_ASM
 if HAVE_X86_64_ASM
@@ -110,25 +110,25 @@ if HAVE_SPARC_ASM
 GLAPI_ASM_SOURCES = glapi/glapi_sparc.S
 endif
 
-glapi_libglapi_la_SOURCES =
-glapi_libglapi_la_CPPFLAGS = \
+glapi_libglapi2_la_SOURCES =
+glapi_libglapi2_la_CPPFLAGS = \
 	$(AM_CPPFLAGS) \
 	-I$(top_srcdir)/src/mapi/glapi \
 	-I$(top_srcdir)/src/mesa
 
 if HAVE_APPLEDRI
-glapi_libglapi_la_SOURCES += glapi/glapi_gentable.c
+glapi_libglapi2_la_SOURCES += glapi/glapi_gentable.c
 endif
 
 if HAVE_SHARED_GLAPI
-glapi_libglapi_la_SOURCES += $(MAPI_BRIDGE_FILES) glapi/glapi_mapi_tmp.h
-glapi_libglapi_la_CPPFLAGS += \
+glapi_libglapi2_la_SOURCES += $(MAPI_BRIDGE_FILES) glapi/glapi_mapi_tmp.h
+glapi_libglapi2_la_CPPFLAGS += \
 	-DMAPI_MODE_BRIDGE \
 	-DMAPI_ABI_HEADER=\"glapi/glapi_mapi_tmp.h\"
 else
-glapi_libglapi_la_CPPFLAGS += \
+glapi_libglapi2_la_CPPFLAGS += \
 	-DMAPI_MODE_UTIL
-glapi_libglapi_la_SOURCES += \
+glapi_libglapi2_la_SOURCES += \
 	glapi/glapi_dispatch.c \
 	glapi/glapi_entrypoint.c \
 	glapi/glapi_getproc.c \
@@ -148,7 +148,7 @@ glapi_test_CPPFLAGS = \
 	-I$(top_srcdir)/src/gtest/include
 
 glapi_test_LDADD = \
-	$(top_builddir)/src/mapi/glapi/libglapi.la \
+	$(top_builddir)/src/mapi/glapi/libglapi2.la \
 	$(top_builddir)/src/gtest/libgtest.la
 endif
 endif
@@ -158,7 +158,7 @@ TESTS += es1api/ABI-check
 
 BUILT_SOURCES += es1api/glapi_mapi_tmp.h
 
-pkgconfig_DATA += es1api/glesv1_cm.pc
+pkgconfig_DATA += es1api/glesv1_cm2.pc
 
 GLES_includedir = $(includedir)/GLES
 GLES_include_HEADERS = \
@@ -167,25 +167,25 @@ GLES_include_HEADERS = \
 	$(top_srcdir)/include/GLES/glext.h \
 	$(top_srcdir)/include/GLES/glplatform.h
 
-lib_LTLIBRARIES += es1api/libGLESv1_CM.la
+lib_LTLIBRARIES += es1api/libGLESv1_CM2.la
 
-es1api_libGLESv1_CM_la_SOURCES = entry.c es1api/glapi_mapi_tmp.h
-es1api_libGLESv1_CM_la_CFLAGS = \
+es1api_libGLESv1_CM2_la_SOURCES = entry.c es1api/glapi_mapi_tmp.h
+es1api_libGLESv1_CM2_la_CFLAGS = \
 	$(AM_CFLAGS) \
 	$(VISIBILITY_CFLAGS)
-es1api_libGLESv1_CM_la_CPPFLAGS = \
+es1api_libGLESv1_CM2_la_CPPFLAGS = \
 	$(AM_CPPFLAGS) \
 	-DMAPI_MODE_BRIDGE \
 	-DMAPI_ABI_HEADER=\"es1api/glapi_mapi_tmp.h\"
-es1api_libGLESv1_CM_la_LIBADD = $(GLESv1_CM_LIB_DEPS)
-es1api_libGLESv1_CM_la_LDFLAGS = \
+es1api_libGLESv1_CM2_la_LIBADD = $(GLESv1_CM_LIB_DEPS)
+es1api_libGLESv1_CM2_la_LDFLAGS = \
 	-no-undefined \
 	-version-number 1:1 \
 	$(GC_SECTIONS) \
 	$(LD_NO_UNDEFINED)
 
 if HAVE_SHARED_GLAPI
-es1api_libGLESv1_CM_la_LIBADD += shared-glapi/libglapi.la
+es1api_libGLESv1_CM2_la_LIBADD += shared-glapi/libglapi2.la
 endif
 endif
 
@@ -199,7 +199,7 @@ TESTS += es2api/ABI-check
 
 BUILT_SOURCES += es2api/glapi_mapi_tmp.h
 
-pkgconfig_DATA += es2api/glesv2.pc
+pkgconfig_DATA += es2api/glesv2_2.pc
 
 GLES2_includedir = $(includedir)/GLES2
 GLES2_include_HEADERS = \
@@ -213,25 +213,25 @@ GLES3_include_HEADERS = \
 	$(top_srcdir)/include/GLES3/gl3ext.h \
 	$(top_srcdir)/include/GLES3/gl3platform.h
 
-lib_LTLIBRARIES += es2api/libGLESv2.la
+lib_LTLIBRARIES += es2api/libGLESv2_2.la
 
-es2api_libGLESv2_la_SOURCES = entry.c es2api/glapi_mapi_tmp.h
-es2api_libGLESv2_la_CFLAGS = \
+es2api_libGLESv2_2_la_SOURCES = entry.c es2api/glapi_mapi_tmp.h
+es2api_libGLESv2_2_la_CFLAGS = \
 	$(AM_CFLAGS) \
 	$(VISIBILITY_CFLAGS)
-es2api_libGLESv2_la_CPPFLAGS = \
+es2api_libGLESv2_2_la_CPPFLAGS = \
 	$(AM_CPPFLAGS) \
 	-DMAPI_MODE_BRIDGE \
 	-DMAPI_ABI_HEADER=\"es2api/glapi_mapi_tmp.h\"
-es2api_libGLESv2_la_LIBADD = $(GLESv2_LIB_DEPS)
-es2api_libGLESv2_la_LDFLAGS = \
+es2api_libGLESv2_2_la_LIBADD = $(GLESv2_LIB_DEPS)
+es2api_libGLESv2_2_la_LDFLAGS = \
 	-no-undefined \
 	-version-number 2 \
 	$(GC_SECTIONS) \
 	$(LD_NO_UNDEFINED)
 
 if HAVE_SHARED_GLAPI
-es2api_libGLESv2_la_LIBADD += shared-glapi/libglapi.la
+es2api_libGLESv2_2_la_LIBADD += shared-glapi/libglapi2.la
 endif
 endif
 

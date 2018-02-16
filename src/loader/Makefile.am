@@ -31,7 +31,7 @@ AM_CPPFLAGS = \
 	-I$(top_srcdir)/src \
 	$(VISIBILITY_CFLAGS) \
 	$(XCB_DRI3_CFLAGS) \
-	$(LIBDRM_CFLAGS) \
+	$(LIBDRM2_CFLAGS) \
 	$(LIBUDEV_CFLAGS)
 
 libloader_la_CPPFLAGS = $(AM_CPPFLAGS)
@@ -51,9 +51,9 @@ libloader_la_CPPFLAGS += \
 
 endif
 
-if HAVE_LIBDRM
+if HAVE_LIBDRM2
 libloader_la_LIBADD += \
-	$(LIBDRM_LIBS)
+	$(LIBDRM2_LIBS)
 endif
 
 if HAVE_DRI3

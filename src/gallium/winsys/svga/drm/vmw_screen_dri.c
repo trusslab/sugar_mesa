@@ -39,7 +39,7 @@
 #include "state_tracker/drm_driver.h"
 
 #include "vmwgfx_drm.h"
-#include <xf86drm.h>
+#include <xf86drm2.h>
 
 #include <stdio.h>
 #include <fcntl.h>

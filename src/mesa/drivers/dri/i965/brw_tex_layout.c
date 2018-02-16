@@ -36,6 +36,7 @@
 #include "brw_context.h"
 #include "main/macros.h"
 #include "main/glformats.h"
+#include "my_prints.h"
 
 #define FILE_DEBUG_FLAG DEBUG_MIPTREE
 
@@ -554,6 +555,7 @@ brw_miptree_choose_tiling(struct brw_context *brw,
                           const struct intel_mipmap_tree *mt,
                           uint32_t layout_flags)
 {
+   return I915_TILING_NONE;
    if (mt->format == MESA_FORMAT_S_UINT8) {
       /* The stencil buffer is W tiled. However, we request from the kernel a
        * non-tiled buffer because the GTT is incapable of W fencing.

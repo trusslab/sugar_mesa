@@ -28,6 +28,7 @@
 #include <dlfcn.h>
 #include "dri_common.h"
 #include "drisw_priv.h"
+#include "my_prints.h"
 
 static Bool
 XCreateDrawable(struct drisw_drawable * pdp,

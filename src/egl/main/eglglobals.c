@@ -59,7 +59,7 @@ struct _egl_global _eglGlobal =
 #ifdef HAVE_X11_PLATFORM
    " EGL_EXT_platform_x11"
 #endif
-#ifdef HAVE_DRM_PLATFORM
+#ifdef HAVE_DRM2_PLATFORM
    " EGL_MESA_platform_gbm"
 #endif
    " EGL_KHR_client_get_all_proc_addresses"

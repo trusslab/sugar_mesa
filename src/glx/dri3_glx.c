@@ -77,6 +77,7 @@
 #include "dri3_priv.h"
 #include "loader.h"
 #include "dri2.h"
+#include "my_prints.h"
 
 static struct dri3_drawable *
 loader_drawable_to_dri3_drawable(struct loader_dri3_drawable *draw) {

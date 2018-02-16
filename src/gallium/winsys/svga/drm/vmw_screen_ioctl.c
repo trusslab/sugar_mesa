@@ -41,7 +41,7 @@
 #include "vmw_screen.h"
 #include "vmw_context.h"
 #include "vmw_fence.h"
-#include "xf86drm.h"
+#include "xf86drm2.h"
 #include "vmwgfx_drm.h"
 #include "svga3d_caps.h"
 #include "svga3d_reg.h"

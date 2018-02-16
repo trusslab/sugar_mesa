@@ -37,7 +37,7 @@
 #include <sys/types.h>
 #include <unistd.h>
 #include <dlfcn.h>
-#include <xf86drm.h>
+#include <xf86drm2.h>
 
 #include <GL/gl.h> /* dri_interface needs GL types */
 #include <GL/internal/dri_interface.h>
@@ -46,6 +46,7 @@
 
 #include "gbmint.h"
 #include "loader.h"
+#include "my_prints.h"
 
 /* For importing wl_buffer */
 #if HAVE_WAYLAND_PLATFORM
@@ -331,12 +332,12 @@ dri_open_driver(struct gbm_dri_device *dri)
       len = next - p;
 #if GLX_USE_TLS
       snprintf(path, sizeof path,
-               "%.*s/tls/%s_dri.so", len, p, dri->base.driver_name);
+               "%.*s/tls/%s_dri2.so", len, p, dri->base.driver_name);
       dri->driver = dlopen(path, RTLD_NOW | RTLD_GLOBAL);
 #endif
       if (dri->driver == NULL) {
          snprintf(path, sizeof path,
-                  "%.*s/%s_dri.so", len, p, dri->base.driver_name);
+                  "%.*s/%s_dri2.so", len, p, dri->base.driver_name);
          dri->driver = dlopen(path, RTLD_NOW | RTLD_GLOBAL);
       }
       /* not need continue to loop all paths once the driver is found */

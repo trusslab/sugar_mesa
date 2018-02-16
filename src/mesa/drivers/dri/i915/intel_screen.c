@@ -40,6 +40,7 @@
 
 #include "utils.h"
 #include "xmlpool.h"
+#include "my_prints.h"
 
 static const __DRIconfigOptionsExtension i915_config_options = {
    .base = { __DRI_CONFIG_OPTIONS, 1 },
@@ -435,7 +436,7 @@ intel_create_image(__DRIscreen *screen,
    uint32_t tiling;
    int cpp;
 
-   tiling = I915_TILING_X;
+   tiling = I915_TILING_NONE;
    if (use & __DRI_IMAGE_USE_CURSOR) {
       if (width != 64 || height != 64)
 	 return NULL;

@@ -28,6 +28,7 @@ struct wl_egl_window {
 	void *private;
 	void (*resize_callback)(struct wl_egl_window *, void *);
 	void (*destroy_window_callback)(void *);
+	int vgt_surface;
 };
 
 #ifdef  __cplusplus

@@ -39,7 +39,7 @@
 #include "util/u_memory.h"
 #include "util/u_hash_table.h"
 
-#include <xf86drm.h>
+#include <xf86drm2.h>
 #include <stdio.h>
 #include <sys/types.h>
 #include <sys/stat.h>

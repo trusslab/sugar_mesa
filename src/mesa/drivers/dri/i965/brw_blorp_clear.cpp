@@ -38,6 +38,7 @@
 #include "brw_state.h"
 
 #include "nir_builder.h"
+#include "my_prints.h"
 
 #define FILE_DEBUG_FLAG DEBUG_BLORP
 
@@ -229,6 +230,7 @@ do_single_blorp_clear(struct brw_context *brw, struct gl_framebuffer *fb,
 
    DBG("%s (%s) to mt %p level %d layer %d\n", __FUNCTION__, clear_type,
        irb->mt, irb->mt_level, irb->mt_layer);
+
 
    brw_blorp_exec(brw, &params);
 

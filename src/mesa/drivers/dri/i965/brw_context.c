@@ -71,6 +71,7 @@
 #include "util/ralloc.h"
 #include "util/debug.h"
 #include "isl/isl.h"
+#include "my_prints.h"
 
 /***************************************
  * Mesa's Driver Functions
@@ -1257,8 +1258,9 @@ intelMakeCurrent(__DRIcontext * driContextPriv,
       /* If the context viewport hasn't been initialized, force a call out to
        * the loader to get buffers so we have a drawable size for the initial
        * viewport. */
-      if (!brw->ctx.ViewportInitialized)
+      if (!brw->ctx.ViewportInitialized) {
          intel_prepare_render(brw);
+      }
 
       _mesa_make_current(ctx, fb, readFb);
    } else {

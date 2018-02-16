@@ -33,6 +33,7 @@
 #include "intel_batchbuffer.h"
 #include "main/imports.h"
 #include "util/ralloc.h"
+#include "my_prints.h"
 
 static void
 brw_track_state_batch(struct brw_context *brw,

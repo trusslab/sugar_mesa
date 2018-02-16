@@ -21,7 +21,7 @@
 
 if HAVE_SHARED_GLAPI
 SHARED_GLAPI_CFLAGS = -DGLX_SHARED_GLAPI
-SHARED_GLAPI_LIB = $(top_builddir)/src/mapi/shared-glapi/libglapi.la
+SHARED_GLAPI_LIB = $(top_builddir)/src/mapi/shared-glapi/libglapi2.la
 endif
 
 SUBDIRS =
@@ -166,7 +166,7 @@ endif
 
 GL_LIBS = \
 	libglx.la \
-	$(top_builddir)/src/mapi/glapi/libglapi.la \
+	$(top_builddir)/src/mapi/glapi/libglapi2.la \
 	$(SHARED_GLAPI_LIB) \
 	$(GL_LIB_DEPS)
 

@@ -25,6 +25,7 @@
 #include "brw_shader.h"
 #include "compiler/glsl_types.h"
 #include "compiler/nir/nir_builder.h"
+#include "my_prints.h"
 
 static bool
 is_input(nir_intrinsic_instr *intrin)

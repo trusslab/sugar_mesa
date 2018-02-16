@@ -45,6 +45,7 @@
 #include "texstate.h"
 #include "uniforms.h"
 #include "varray.h"
+#include "my_prints.h"
 
 static bool
 need_signed_unsigned_int_conversion(mesa_format mesaFormat,

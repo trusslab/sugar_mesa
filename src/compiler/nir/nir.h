@@ -40,6 +40,7 @@
 #include <stdio.h>
 
 #include "nir_opcodes.h"
+#include "my_prints.h"
 
 #ifdef __cplusplus
 extern "C" {

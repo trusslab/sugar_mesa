@@ -35,7 +35,7 @@
 #include <errno.h>
 #include <unistd.h>
 #include <fcntl.h>
-#include <xf86drm.h>
+#include <xf86drm2.h>
 #include <sys/mman.h>
 
 #include "egl_dri2.h"
@@ -44,6 +44,7 @@
 
 #include <wayland-client.h>
 #include "wayland-drm-client-protocol.h"
+#include "my_prints.h"
 
 enum wl_drm_format_flags {
    HAS_ARGB8888 = 1,
@@ -125,6 +126,8 @@ destroy_window_callback(void *data)
    dri2_surf->wl_win = NULL;
 }
 
+#define WL_DRM_VGT_FORMAT	0x1111
+
 /**
  * Called via eglCreateWindowSurface(), drv->API.CreateWindowSurface().
  */
@@ -156,6 +159,7 @@ dri2_wl_create_surface(_EGLDriver *drv, _EGLDisplay *disp,
       dri2_surf->format = WL_DRM_FORMAT_XRGB8888;
    else
       dri2_surf->format = WL_DRM_FORMAT_ARGB8888;
+   dri2_surf->remote_format = WL_DRM_VGT_FORMAT;
 
    if (!window) {
       _eglError(EGL_BAD_NATIVE_WINDOW, "dri2_create_surface");
@@ -636,18 +640,24 @@ create_wl_buffer(struct dri2_egl_surface *dri2_surf)
    if (dri2_dpy->capabilities & WL_DRM_CAPABILITY_PRIME) {
       dri2_dpy->image->queryImage(image, __DRI_IMAGE_ATTRIB_FD, &fd);
       dri2_dpy->image->queryImage(image, __DRI_IMAGE_ATTRIB_STRIDE, &stride);
+      if (dri2_surf->remote_format != WL_DRM_VGT_FORMAT) {
+         _eglError(_EGL_FATAL, "%s: Error1: unexpected remote format\n"); 
+         assert(0);
+      }
 
       dri2_surf->current->wl_buffer =
          wl_drm_create_prime_buffer(dri2_dpy->wl_drm,
                                     fd,
                                     dri2_surf->base.Width,
                                     dri2_surf->base.Height,
-                                    dri2_surf->format,
+                                    dri2_surf->remote_format,
                                     0, stride,
                                     0, 0,
-                                    0, 0);
+                                    dri2_surf->format, getpid());
       close(fd);
    } else {
+      _eglError(_EGL_FATAL, "%s: Error2: unexpected format\n"); 
+      assert(0);
       dri2_dpy->image->queryImage(image, __DRI_IMAGE_ATTRIB_NAME, &name);
       dri2_dpy->image->queryImage(image, __DRI_IMAGE_ATTRIB_STRIDE, &stride);
 

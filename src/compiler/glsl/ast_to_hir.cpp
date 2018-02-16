@@ -58,6 +58,7 @@
 #include "main/shaderobj.h"
 #include "ir.h"
 #include "ir_builder.h"
+#include "my_prints.h" 
 
 using namespace ir_builder;
 
@@ -1258,11 +1259,12 @@ constant_one_for_inc_dec(void *ctx, const glsl_type *type)
    }
 }
 
-ir_rvalue *
+inline ir_rvalue *
 ast_expression::hir(exec_list *instructions,
                     struct _mesa_glsl_parse_state *state)
 {
-   return do_hir(instructions, state, true);
+   ir_rvalue *ret = do_hir(instructions, state, true);
+   return ret;
 }
 
 void
@@ -1290,7 +1292,7 @@ ast_expression::set_is_lhs(bool new_value)
       this->subexpressions[0]->set_is_lhs(new_value);
 }
 
-ir_rvalue *
+inline ir_rvalue *
 ast_expression::do_hir(exec_list *instructions,
                        struct _mesa_glsl_parse_state *state,
                        bool needs_rvalue)

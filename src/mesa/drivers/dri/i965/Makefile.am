@@ -21,6 +21,7 @@
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 # IN THE SOFTWARE.
 
+
 include Makefile.sources
 
 AM_CFLAGS = \
@@ -47,9 +48,9 @@ brw_nir_trig_workarounds.c: brw_nir_trig_workarounds.py $(top_srcdir)/src/compil
 	$(MKDIR_GEN)
 	$(AM_V_GEN) PYTHONPATH=$(top_srcdir)/src/compiler/nir $(PYTHON2) $(PYTHON_FLAGS) $(srcdir)/brw_nir_trig_workarounds.py > $@ || ($(RM) $@; false)
 
-noinst_LTLIBRARIES = libi965_dri.la libi965_compiler.la
-libi965_dri_la_SOURCES = $(i965_FILES)
-libi965_dri_la_LIBADD = \
+noinst_LTLIBRARIES = libi965_dri2.la libi965_compiler.la
+libi965_dri2_la_SOURCES = $(i965_FILES)
+libi965_dri2_la_LIBADD = \
 	$(top_builddir)/src/intel/isl/libisl.la \
 	libi965_compiler.la \
 	$(INTEL_LIBS)

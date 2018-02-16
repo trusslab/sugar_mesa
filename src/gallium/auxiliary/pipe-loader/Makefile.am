@@ -27,15 +27,15 @@ libpipe_loader_static_la_SOURCES = \
 libpipe_loader_dynamic_la_SOURCES = \
 	$(COMMON_SOURCES)
 
-if HAVE_LIBDRM
+if HAVE_LIBDRM2
 AM_CFLAGS += \
-	$(LIBDRM_CFLAGS)
+	$(LIBDRM2_CFLAGS)
 
 libpipe_loader_static_la_SOURCES += \
-	$(DRM_SOURCES)
+	$(DRM2_SOURCES)
 
 libpipe_loader_dynamic_la_SOURCES += \
-	$(DRM_SOURCES)
+	$(DRM2_SOURCES)
 
 endif
 

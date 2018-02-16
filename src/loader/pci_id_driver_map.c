@@ -23,9 +23,9 @@
 
 int is_nouveau_vieux(int fd);
 
-#ifdef HAVE_LIBDRM
+#ifdef HAVE_LIBDRM2
 
-#include <xf86drm.h>
+#include <xf86drm2.h>
 #include <nouveau_drm.h>
 
 static int

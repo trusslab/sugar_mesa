@@ -47,6 +47,7 @@
 #include "main/teximage.h"
 #include "main/streaming-load-memcpy.h"
 #include "x86/common_x86_asm.h"
+#include "my_prints.h"
 
 #define FILE_DEBUG_FLAG DEBUG_MIPTREE
 

@@ -50,6 +50,7 @@
 #include <X11/Xlib-xcb.h>
 #include <xcb/xcb.h>
 #include <xcb/glx.h>
+#include "my_prints.h"
 
 
 #ifdef DEBUG

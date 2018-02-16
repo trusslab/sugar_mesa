@@ -49,7 +49,7 @@
 #include <GL/gl.h>
 #include <GL/internal/dri_interface.h>
 
-#ifdef HAVE_DRM_PLATFORM
+#ifdef HAVE_DRM2_PLATFORM
 #include <gbm_driint.h>
 #endif
 
@@ -185,7 +185,7 @@ struct dri2_egl_display
    int                       min_swap_interval;
    int                       max_swap_interval;
    int                       default_swap_interval;
-#ifdef HAVE_DRM_PLATFORM
+#ifdef HAVE_DRM2_PLATFORM
    struct gbm_dri_device    *gbm_dri;
 #endif
 
@@ -259,13 +259,14 @@ struct dri2_egl_surface
    int                    dy;
    struct wl_callback    *throttle_callback;
    int			  format;
+   int			  remote_format;
 #endif
 
-#ifdef HAVE_DRM_PLATFORM
+#ifdef HAVE_DRM2_PLATFORM
    struct gbm_dri_surface *gbm_surf;
 #endif
 
-#if defined(HAVE_WAYLAND_PLATFORM) || defined(HAVE_DRM_PLATFORM)
+#if defined(HAVE_WAYLAND_PLATFORM) || defined(HAVE_DRM2_PLATFORM)
    __DRIbuffer           *dri_buffers[__DRI_BUFFER_COUNT];
    struct {
 #ifdef HAVE_WAYLAND_PLATFORM
@@ -277,7 +278,7 @@ struct dri2_egl_surface
       void *data;
       int data_size;
 #endif
-#ifdef HAVE_DRM_PLATFORM
+#ifdef HAVE_DRM2_PLATFORM
       struct gbm_bo       *bo;
 #endif
       int                 locked;

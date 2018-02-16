@@ -52,6 +52,7 @@
 #include "program/prog_print.h"
 #include "program/program.h"
 #include "program/prog_parameter.h"
+#include "my_prints.h"
 
 
 static int swizzle_for_size(int size);
@@ -3049,6 +3050,7 @@ _mesa_glsl_link_shader(struct gl_context *ctx, struct gl_shader_program *prog)
 {
    unsigned int i;
 
+   
    _mesa_clear_shader_program_data(prog);
 
    prog->LinkStatus = GL_TRUE;
@@ -3058,6 +3060,7 @@ _mesa_glsl_link_shader(struct gl_context *ctx, struct gl_shader_program *prog)
 	 linker_error(prog, "linking with uncompiled shader");
       }
    }
+
 
    if (prog->LinkStatus) {
       link_shaders(ctx, prog);

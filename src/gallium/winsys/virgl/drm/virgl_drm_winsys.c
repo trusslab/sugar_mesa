@@ -37,7 +37,7 @@
 #include "virgl/virgl_screen.h"
 #include "virgl/virgl_public.h"
 
-#include <xf86drm.h>
+#include <xf86drm2.h>
 #include "virtgpu_drm.h"
 
 #include "virgl_drm_winsys.h"

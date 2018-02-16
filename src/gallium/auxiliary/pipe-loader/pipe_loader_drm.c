@@ -32,7 +32,7 @@
 
 #include <fcntl.h>
 #include <stdio.h>
-#include <xf86drm.h>
+#include <xf86drm2.h>
 #include <unistd.h>
 
 #include "loader.h"

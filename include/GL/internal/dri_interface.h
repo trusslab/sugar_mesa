@@ -40,8 +40,8 @@
 #ifndef DRI_INTERFACE_H
 #define DRI_INTERFACE_H
 
-#ifdef HAVE_LIBDRM
-#include <drm.h>
+#ifdef HAVE_LIBDRM2
+#include <libdrm2/drm.h>
 #else
 typedef unsigned int drm_context_t;
 typedef unsigned int drm_drawable_t;

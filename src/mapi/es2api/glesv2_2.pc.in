@@ -3,10 +3,10 @@ exec_prefix=${prefix}
 libdir=@libdir@
 includedir=@includedir@
 
-Name: glesv2
-Description: Mesa OpenGL ES 2.0 library
+Name: glesv2_2
+Description: Mesa OpenGL ES 2.0 library (works with library drivers)
 Requires.private:
 Version: @VERSION@
-Libs: -L${libdir} -lGLESv2
+Libs: -L${libdir} -lGLESv2_2
 Libs.private: @GLESv2_PC_LIB_PRIV@
 Cflags: -I${includedir}

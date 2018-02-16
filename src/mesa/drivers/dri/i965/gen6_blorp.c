@@ -30,6 +30,7 @@
 #include "brw_state.h"
 
 #include "brw_blorp.h"
+#include "my_prints.h"
 
 static void
 gen6_blorp_emit_vertex_buffer_state(struct brw_context *brw,

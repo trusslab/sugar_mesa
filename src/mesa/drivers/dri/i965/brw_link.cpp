@@ -21,6 +21,7 @@
  * IN THE SOFTWARE.
  */
 
+
 #include "brw_context.h"
 #include "brw_shader.h"
 #include "brw_fs.h"
@@ -33,6 +34,7 @@
 #include "main/shaderapi.h"
 #include "main/shaderobj.h"
 #include "main/uniforms.h"
+#include "my_prints.h"
 
 /**
  * Performs a compile of the shader stages even when we don't know
@@ -162,8 +164,10 @@ process_glsl_ir(gl_shader_stage stage,
                                 false /* loops */
                                 ) || progress;
 
+
       progress = do_common_optimization(shader->ir, true, true,
                                         options, ctx->Const.NativeIntegers) || progress;
+
    } while (progress);
 
    validate_ir_tree(shader->ir);

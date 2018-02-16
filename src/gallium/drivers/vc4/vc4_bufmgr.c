@@ -25,8 +25,8 @@
 #include <err.h>
 #include <sys/mman.h>
 #include <fcntl.h>
-#include <xf86drm.h>
-#include <xf86drmMode.h>
+#include <xf86drm2.h>
+#include <xf86drm2Mode.h>
 
 #include "util/u_hash_table.h"
 #include "util/u_memory.h"

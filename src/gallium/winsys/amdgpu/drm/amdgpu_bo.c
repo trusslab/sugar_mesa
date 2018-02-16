@@ -34,7 +34,7 @@
 #include "os/os_time.h"
 #include "state_tracker/drm_driver.h"
 #include <amdgpu_drm.h>
-#include <xf86drm.h>
+#include <xf86drm2.h>
 #include <stdio.h>
 #include <inttypes.h>
 

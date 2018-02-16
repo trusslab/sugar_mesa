@@ -39,7 +39,7 @@
 #include <unistd.h>
 #include <dlfcn.h>
 #include <fcntl.h>
-#include <xf86drm.h>
+#include <xf86drm2.h>
 
 #include "pipe/p_compiler.h"
 #include "pipe/p_format.h"

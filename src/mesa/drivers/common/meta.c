@@ -86,6 +86,7 @@
 #include "main/enums.h"
 #include "main/glformats.h"
 #include "util/ralloc.h"
+#include "my_prints.h"
 
 /** Return offset in bytes of the field within a vertex struct */
 #define OFFSET(FIELD) ((void *) offsetof(struct vertex, FIELD))

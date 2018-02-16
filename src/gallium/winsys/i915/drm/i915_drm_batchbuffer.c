@@ -4,7 +4,7 @@
 
 #include "i915_drm.h"
 #include "i915/i915_debug.h"
-#include <xf86drm.h>
+#include <xf86drm2.h>
 #include <stdio.h>
 
 #define BATCH_RESERVED 16

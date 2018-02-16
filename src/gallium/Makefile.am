@@ -64,7 +64,7 @@ SUBDIRS += winsys/amdgpu/drm
 endif
 
 ## the radeon winsys - linked in by r300, r600 and radeonsi
-if NEED_RADEON_DRM_WINSYS
+if NEED_RADEON_DRM2_WINSYS
 SUBDIRS += winsys/radeon/drm
 endif
 

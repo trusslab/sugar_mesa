@@ -49,6 +49,7 @@
 #include "main/debug_output.h"
 #include "main/errors.h"
 #include "main/macros.h"
+#include "my_prints.h"
 
 const char __dri2ConfigOptions[] =
    DRI_CONF_BEGIN

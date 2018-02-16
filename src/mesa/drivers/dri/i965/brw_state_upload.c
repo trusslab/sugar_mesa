@@ -42,6 +42,7 @@
 #include "brw_wm.h"
 #include "brw_cs.h"
 #include "main/framebuffer.h"
+#include "my_prints.h"
 
 static const struct brw_tracked_state *gen4_atoms[] =
 {

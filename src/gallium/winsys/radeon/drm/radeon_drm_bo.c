@@ -36,7 +36,7 @@
 #include "state_tracker/drm_driver.h"
 
 #include <sys/ioctl.h>
-#include <xf86drm.h>
+#include <xf86drm2.h>
 #include <errno.h>
 #include <fcntl.h>
 #include <stdio.h>

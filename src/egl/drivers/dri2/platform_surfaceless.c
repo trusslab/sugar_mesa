@@ -26,7 +26,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-#include <xf86drm.h>
+#include <xf86drm2.h>
 #include <dlfcn.h>
 #include <sys/types.h>
 #include <sys/stat.h>

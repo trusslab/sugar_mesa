@@ -21,8 +21,8 @@ endif
 
 if HAVE_I965_DRI
 SUBDIRS += i965
-MEGADRIVERS_DEPS += i965/libi965_dri.la
-MEGADRIVERS += i965_dri.so
+MEGADRIVERS_DEPS += i965/libi965_dri2.la
+MEGADRIVERS += i965_dri2.so
 endif
 
 if HAVE_NOUVEAU_DRI

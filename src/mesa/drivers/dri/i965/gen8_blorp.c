@@ -32,6 +32,7 @@
 #include "brw_state.h"
 
 #include "brw_blorp.h"
+#include "my_prints.h"
 
 
 /* SURFACE_STATE for renderbuffer or texture surface (see

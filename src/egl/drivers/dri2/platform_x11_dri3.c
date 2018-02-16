@@ -29,7 +29,7 @@
 #include <xcb/dri3.h>
 #include <xcb/present.h>
 
-#include <xf86drm.h>
+#include <xf86drm2.h>
 
 #include "egl_dri2.h"
 #include "egl_dri2_fallbacks.h"

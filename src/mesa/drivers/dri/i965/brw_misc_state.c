@@ -42,6 +42,7 @@
 #include "main/framebuffer.h"
 #include "main/fbobject.h"
 #include "main/glformats.h"
+#include "my_prints.h"
 
 /* Constant single cliprect for framebuffer object or DRI2 drawing */
 static void

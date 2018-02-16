@@ -28,7 +28,7 @@
  *    <wallbraker@gmail.com> Chia-I Wu <olv@lunarg.com>
  */
 
-#include <xf86drm.h>
+#include <xf86drm2.h>
 #include <dlfcn.h>
 #include <fcntl.h>
 #include "GL/mesa_glinterop.h"
@@ -51,6 +51,7 @@
 #include "dri_drawable.h"
 #include "dri_query_renderer.h"
 #include "dri2_buffer.h"
+#include "my_prints.h"
 
 static int convert_fourcc(int format, int *dri_components_p)
 {

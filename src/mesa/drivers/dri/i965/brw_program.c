@@ -46,6 +46,7 @@
 #include "brw_shader.h"
 #include "brw_nir.h"
 #include "intel_batchbuffer.h"
+#include "my_prints.h"
 
 static void
 brw_nir_lower_uniforms(nir_shader *nir, bool is_scalar)

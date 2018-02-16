@@ -41,6 +41,7 @@
 #include "main/formats.h"
 #include "main/glformats.h"
 #include "main/teximage.h"
+#include "my_prints.h"
 
 #define FILE_DEBUG_FLAG DEBUG_MIPTREE
 
@@ -129,6 +130,7 @@ intel_miptree_choose_tiling(struct intel_context *intel,
                             enum intel_miptree_tiling_mode requested,
                             struct intel_mipmap_tree *mt)
 {
+   return I915_TILING_NONE;
    /* Some usages may want only one type of tiling, like depth miptrees (Y
     * tiled), or temporary BOs for uploading data once (linear).
     */

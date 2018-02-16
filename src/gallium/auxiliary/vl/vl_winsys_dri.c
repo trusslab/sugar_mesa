@@ -34,7 +34,7 @@
 #include <X11/Xlib-xcb.h>
 #include <X11/extensions/dri2tokens.h>
 #include <xcb/dri2.h>
-#include <xf86drm.h>
+#include <xf86drm2.h>
 #include <errno.h>
 
 #include "loader.h"

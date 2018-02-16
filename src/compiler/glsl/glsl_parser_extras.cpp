@@ -36,6 +36,7 @@
 #include "glsl_parser.h"
 #include "ir_optimization.h"
 #include "loop_analysis.h"
+#include "my_prints.h" 
 
 /**
  * Format a short human-readable description of the given GLSL version.

@@ -41,6 +41,7 @@
 #include "brw_defines.h"
 #include "brw_wm.h"
 #include "isl/isl.h"
+#include "my_prints.h"
 
 /**
  * Convert an swizzle enumeration (i.e. SWIZZLE_X) to one of the Gen7.5+

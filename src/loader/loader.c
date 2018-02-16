@@ -88,12 +88,14 @@
 #endif
 #include "loader.h"
 
-#ifdef HAVE_LIBDRM
-#include <xf86drm.h>
+#ifdef HAVE_LIBDRM2
+#include <xf86drm2.h>
 #endif
 
 #define __IS_LOADER
 #include "pci_id_driver_map.h"
+#include <sugar/isol_file_ops.h>
+#include "my_prints.h"
 
 static void default_logger(int level, const char *fmt, ...)
 {
@@ -112,11 +114,11 @@ loader_open_device(const char *device_name)
 {
    int fd;
 #ifdef O_CLOEXEC
-   fd = open(device_name, O_RDWR | O_CLOEXEC);
+   fd = isol_open(device_name, O_RDWR | O_CLOEXEC, 0);
    if (fd == -1 && errno == EINVAL)
 #endif
    {
-      fd = open(device_name, O_RDWR);
+      fd = isol_open(device_name, O_RDWR, 0);
       if (fd != -1)
          fcntl(fd, F_SETFD, fcntl(fd, F_GETFD) | FD_CLOEXEC);
    }

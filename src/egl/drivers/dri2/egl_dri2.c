@@ -40,8 +40,8 @@
 #include <unistd.h>
 #include <c11/threads.h>
 #include <time.h>
-#ifdef HAVE_LIBDRM
-#include <xf86drm.h>
+#ifdef HAVE_LIBDRM2
+#include <xf86drm2.h>
 #include <drm_fourcc.h>
 #endif
 #include <GL/gl.h>
@@ -57,6 +57,7 @@
 
 #include "egl_dri2.h"
 #include "util/u_atomic.h"
+#include "my_prints.h"
 
 /* The kernel header drm_fourcc.h defines the DRM formats below.  We duplicate
  * some of the definitions here so that building Mesa won't bleeding-edge
@@ -466,15 +467,15 @@ dri2_open_driver(_EGLDisplay *disp)
       len = next - p;
 #if GLX_USE_TLS
       snprintf(path, sizeof path,
-	       "%.*s/tls/%s_dri.so", len, p, dri2_dpy->driver_name);
+	       "%.*s/tls/%s_dri2.so", len, p, dri2_dpy->driver_name);
       dri2_dpy->driver = dlopen(path, RTLD_NOW | RTLD_GLOBAL);
 #endif
       if (dri2_dpy->driver == NULL) {
 	 snprintf(path, sizeof path,
-		  "%.*s/%s_dri.so", len, p, dri2_dpy->driver_name);
+		  "%.*s/%s_dri2.so", len, p, dri2_dpy->driver_name);
 	 dri2_dpy->driver = dlopen(path, RTLD_NOW | RTLD_GLOBAL);
 	 if (dri2_dpy->driver == NULL)
-	    _eglLog(_EGL_DEBUG, "failed to open %s: %s\n", path, dlerror());
+	    _eglLog(_EGL_WARNING, "failed to open %s: %s\n", path, dlerror());
       }
       /* not need continue to loop all paths once the driver is found */
       if (dri2_dpy->driver != NULL)
@@ -672,7 +673,7 @@ dri2_setup_screen(_EGLDisplay *disp)
       if (dri2_renderer_query_integer(dri2_dpy,
                                       __DRI2_RENDERER_HAS_TEXTURE_3D))
          disp->Extensions.KHR_gl_texture_3D_image = EGL_TRUE;
-#ifdef HAVE_LIBDRM
+#ifdef HAVE_LIBDRM2
       if (dri2_dpy->image->base.version >= 8 &&
           dri2_dpy->image->createImageFromDmaBufs) {
          disp->Extensions.EXT_image_dma_buf_import = EGL_TRUE;
@@ -821,8 +822,8 @@ dri2_initialize(_EGLDriver *drv, _EGLDisplay *disp)
       ret = dri2_initialize_x11(drv, disp);
       break;
 #endif
-#ifdef HAVE_DRM_PLATFORM
-   case _EGL_PLATFORM_DRM:
+#ifdef HAVE_DRM2_PLATFORM
+   case _EGL_PLATFORM_DRM2:
       ret = dri2_initialize_drm(drv, disp);
       break;
 #endif
@@ -887,8 +888,8 @@ dri2_display_release(_EGLDisplay *disp) {
       }
       break;
 #endif
-#ifdef HAVE_DRM_PLATFORM
-   case _EGL_PLATFORM_DRM:
+#ifdef HAVE_DRM2_PLATFORM
+   case _EGL_PLATFORM_DRM2:
       if (dri2_dpy->own_device) {
          gbm_device_destroy(&dri2_dpy->gbm_dri->base.base);
       }
@@ -915,7 +916,7 @@ dri2_display_release(_EGLDisplay *disp) {
     * the ones from the gbm device. As such the gbm itself is responsible
     * for the cleanup.
     */
-   if (disp->Platform != _EGL_PLATFORM_DRM) {
+   if (disp->Platform != _EGL_PLATFORM_DRM2) {
       for (i = 0; dri2_dpy->driver_configs[i]; i++)
          free((__DRIconfig *) dri2_dpy->driver_configs[i]);
       free(dri2_dpy->driver_configs);
@@ -1581,6 +1582,7 @@ dri2_create_image(_EGLDriver *drv, _EGLDisplay *dpy, _EGLContext *ctx,
                   const EGLint *attr_list)
 {
    struct dri2_egl_display *dri2_dpy = dri2_egl_display(dpy);
+
    return dri2_dpy->vtbl->create_image(drv, dpy, ctx, target, buffer,
                                        attr_list);
 }
@@ -1832,7 +1834,7 @@ dri2_create_wayland_buffer_from_image(_EGLDriver *drv, _EGLDisplay *dpy,
    return dri2_dpy->vtbl->create_wayland_buffer_from_image(drv, dpy, img);
 }
 
-#ifdef HAVE_LIBDRM
+#ifdef HAVE_LIBDRM2
 static _EGLImage *
 dri2_create_image_mesa_drm_buffer(_EGLDisplay *disp, _EGLContext *ctx,
 				  EGLClientBuffer buffer, const EGLint *attr_list)
@@ -2298,7 +2300,7 @@ dri2_create_image_khr(_EGLDriver *drv, _EGLDisplay *disp,
       }
    case EGL_GL_RENDERBUFFER_KHR:
       return dri2_create_image_khr_renderbuffer(disp, ctx, buffer, attr_list);
-#ifdef HAVE_LIBDRM
+#ifdef HAVE_LIBDRM2
    case EGL_DRM_BUFFER_MESA:
       return dri2_create_image_mesa_drm_buffer(disp, ctx, buffer, attr_list);
    case EGL_LINUX_DMA_BUF_EXT:
@@ -2418,7 +2420,7 @@ dri2_bind_wayland_display_wl(_EGLDriver *drv, _EGLDisplay *disp,
    if (!dri2_dpy->wl_server_drm)
 	   return EGL_FALSE;
 
-#ifdef HAVE_DRM_PLATFORM
+#ifdef HAVE_DRM2_PLATFORM
    /* We have to share the wl_drm instance with gbm, so gbm can convert
     * wl_buffers to gbm bos. */
    if (dri2_dpy->gbm_dri)
@@ -2894,7 +2896,7 @@ _eglBuiltInDriverDRI2(const char *args)
    dri2_drv->base.API.CreateImageKHR = dri2_create_image;
    dri2_drv->base.API.DestroyImageKHR = dri2_destroy_image_khr;
    dri2_drv->base.API.CreateWaylandBufferFromImageWL = dri2_create_wayland_buffer_from_image;
-#ifdef HAVE_LIBDRM
+#ifdef HAVE_LIBDRM2
    dri2_drv->base.API.CreateDRMImageMESA = dri2_create_drm_image_mesa;
    dri2_drv->base.API.ExportDRMImageMESA = dri2_export_drm_image_mesa;
    dri2_drv->base.API.ExportDMABUFImageQueryMESA = dri2_export_dma_buf_image_query_mesa;
